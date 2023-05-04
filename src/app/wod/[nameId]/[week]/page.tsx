@@ -39,9 +39,9 @@ export default async function Home({
             <a
               key={weekDate}
               href={`/wod/${params.nameId}/${params.week}/${weekDate}`}
-              className="group m-4 rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
+              className="group m-2 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
             >
-              <h2 className={` text-2xl font-semibold`}>
+              <h2 className={`text-2xl font-semibold`}>
                 {weekName[Number(weekDate)]}
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   -&gt;
