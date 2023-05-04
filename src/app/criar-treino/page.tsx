@@ -33,11 +33,13 @@ export default function Home() {
           name="nameId"
           onChange={(e) => setValues({ ...values, nameId: e.target.value })}
         >
-          {names.map((name) => (
-            <option key={name.ts} value={name?.data?.id}>
-              {name?.data?.name}
-            </option>
-          ))}
+          {names.map(
+            (name: { ts: number; data: { id: string; name: string } }) => (
+              <option key={name.ts} value={name?.data?.id}>
+                {name?.data?.name}
+              </option>
+            )
+          )}
         </select>
         <select
           name="weekDay"

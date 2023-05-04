@@ -22,7 +22,7 @@ export default async function Home({ params }: { params: { nameId: string } }) {
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         {data &&
-          data.map((week) => (
+          data.map((week: string) => (
             <a
               key={week}
               href={`/wod/${params.nameId}/${week}`}

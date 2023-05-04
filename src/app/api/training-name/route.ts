@@ -19,13 +19,13 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const result = await fauna.query(
+    const result = await fauna.query<{ data: any }>(
       q.Map(
         q.Paginate(q.Documents(q.Collection('training-names'))),
         q.Lambda((x) => q.Get(x))
       )
     );
 
-    return NextResponse.json(result.data);
+    return NextResponse.json(result?.data);
   } catch {}
 }

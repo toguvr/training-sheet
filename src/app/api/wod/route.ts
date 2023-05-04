@@ -16,12 +16,12 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const result = await fauna.query(
+  const result = await fauna.query<{ data: any }>(
     q.Map(
       q.Paginate(q.Documents(q.Collection('wods'))),
       q.Lambda((x) => q.Get(x))
     )
   );
 
-  return NextResponse.json(result.data);
+  return NextResponse.json(result?.data);
 }

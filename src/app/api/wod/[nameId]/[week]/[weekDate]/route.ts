@@ -13,9 +13,9 @@ import {
   query as q,
 } from 'faunadb';
 
-export async function GET(_request: Request, context) {
+export async function GET(_request: Request, context: any) {
   const { nameId, week, weekDate } = context.params;
-  const result = await fauna.query(
+  const result = await fauna.query<{ data: any }>(
     q.Let(
       {
         match_result: Match(Index('wods_by_nameId_and_weekNumber_day'), [
@@ -32,5 +32,5 @@ export async function GET(_request: Request, context) {
     )
   );
 
-  return NextResponse.json(result.data);
+  return NextResponse.json(result?.data);
 }

@@ -13,9 +13,9 @@ import {
   query as q,
 } from 'faunadb';
 
-export async function GET(_request: Request, context) {
+export async function GET(_request: Request, context: any) {
   const { nameId } = context.params;
-  const result = await fauna.query(
+  const result = await fauna.query<{ data: any }>(
     Distinct(
       Map(
         Paginate(Match(Index('wods_by_nameId'), nameId)),
@@ -23,5 +23,5 @@ export async function GET(_request: Request, context) {
       )
     )
   );
-  return NextResponse.json(result.data.sort());
+  return NextResponse.json(result?.data.sort());
 }
