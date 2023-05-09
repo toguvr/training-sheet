@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-const VideoEmbed = ({ url }) => {
+const VideoEmbed = ({ url }: { url: any }) => {
   const videoId = url.match(
     /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(\w+)/
   )[1];
