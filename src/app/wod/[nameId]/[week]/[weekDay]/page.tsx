@@ -1,3 +1,4 @@
+import VideoEmbed from '@/components/youtube';
 import { api } from '@/services/api';
 import React from 'react';
 
@@ -39,12 +40,32 @@ export default async function Home({
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         {data?.name.split('\n').map((linha: string, index: number) => {
-          return (
-            <React.Fragment key={index}>
-              {linha}
-              <br />
-            </React.Fragment>
-          );
+          // Define a expressão regular para encontrar URLs do YouTube
+          const youtubeRegex =
+            /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(\w+)/;
+
+          // Tenta encontrar um match da expressão regular na frase
+          const match = linha.match(youtubeRegex);
+
+          if (match) {
+            // Extrai o ID do vídeo do match
+            const videoId = match[1];
+            console.log(match);
+            // Retorna o embed do YouTube
+            return (
+              <React.Fragment key={index}>
+                <VideoEmbed key={index} url={linha} /> <br />
+              </React.Fragment>
+            );
+          } else {
+            // Caso não haja match, retorna a frase original
+            return (
+              <React.Fragment key={index}>
+                {linha}
+                <br />
+              </React.Fragment>
+            );
+          }
         })}
       </div>
     </main>
